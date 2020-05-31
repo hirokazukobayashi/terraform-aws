@@ -1,0 +1,21 @@
+[
+  {
+    "name": "appserver-${service_name}",
+    "image": "${service_name}:${stage}",
+    "essential": true,
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-region": "{region}",
+        "awslogs-stream-prefix": "${service_name}",
+        "awslogs-group": "/ecs/${service_name}-${stage}"
+      }
+    },
+    "portMappings": [
+      {
+        "protocol": "tcp",
+        "containerPort": ${port}
+      }
+    ]
+  }
+]
